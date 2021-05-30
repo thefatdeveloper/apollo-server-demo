@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 module.exports = {
     stringfyTask: (operation, task, tasks) => {
         // removing nulls if any
@@ -10,5 +12,12 @@ module.exports = {
             updatedTasks.splice(tasks.indexOf(task), 1);
         }
         return JSON.stringify(updatedTasks);
+    },
+
+    writeFile: (jsonData) => {
+        fs.writeFile('./src/tasks.json', jsonData, (err) => {
+            if (err) throw err;
+            console.log('The file has been saved!');
+        });
     },
 };

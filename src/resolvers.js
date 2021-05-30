@@ -1,4 +1,3 @@
-const fs = require('fs');
 const utils = require('./utils');
 
 module.exports = {
@@ -18,10 +17,7 @@ module.exports = {
                     completed,
                 };
                 const jsonData = utils.stringfyTask('create', newTask, tasks);
-                fs.writeFile('./src/tasks.json', jsonData, (err) => {
-                    if (err) throw err;
-                    console.log('The file has been saved!');
-                });
+                utils.writeFile(jsonData);
                 return newTask;
             } else {
                 throw new Error('Task with same title exist!!');
@@ -33,10 +29,7 @@ module.exports = {
             if (typeof task !== 'undefined') {
                 task.completed = completed;
                 const jsonData = utils.stringfyTask('update', task, tasks);
-                fs.writeFile('./src/tasks.json', jsonData, (err) => {
-                    if (err) throw err;
-                    console.log('The file has been saved!');
-                });
+                utils.writeFile(jsonData);
                 return task;
             } else {
                 throw new Error('Id not present!!');
@@ -47,10 +40,7 @@ module.exports = {
             const task = tasks.filter((el) => el.id === Number(id))[0];
             if (typeof task !== 'undefined') {
                 const jsonData = utils.stringfyTask('delete', task, tasks);
-                fs.writeFile('./src/tasks.json', jsonData, (err) => {
-                    if (err) throw err;
-                    console.log('The file has been saved!');
-                });
+                utils.writeFile(jsonData);
                 const allTasks = JSON.parse(jsonData);
                 return allTasks;
             } else {
