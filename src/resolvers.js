@@ -32,7 +32,6 @@ module.exports = {
             const task = tasks.filter((el) => el.id === Number(id))[0];
             if (typeof task !== 'undefined') {
                 task.completed = completed;
-                console.log(task.completed, ' task.completed');
                 const jsonData = utils.stringfyTask('update', task, tasks);
                 fs.writeFile('./src/tasks.json', jsonData, (err) => {
                     if (err) throw err;

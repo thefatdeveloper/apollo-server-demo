@@ -2,7 +2,6 @@ const { ApolloServer } = require('apollo-server');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
 const tasks = require('./tasks');
-console.log(tasks);
 const dataSources = () => ({
     getTasks: () => tasks,
 });
